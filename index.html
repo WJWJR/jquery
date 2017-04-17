@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Hello World</title>
+    <style>
+      body {
+        width: 80%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello jQuery!</h1>
+    <h2>Users (click to add)</h2>
+    <ul></ul>
+    <script type="text/javascript">
+      let ul = document.querySelector('ul');
+      function addJSONToPage (json) {
+        json.forEach(user => {
+          let li = document.createElement('li');
+          let a = document.createElement('a');
+          a.href = user.website;
+          a.textContent = user.name;
+          li.appendChild(a);
+          ul.appendChild(li);
+        })
+      }
+      function getUsers () {
+        fetch('http://jsonplaceholder.typicode.com/users')
+          .then(response => response.json())
+          .then(addJSONToPage)
+      }
+      let h2 = document.querySelector('h2');
+      h2.addEventListener('click', getUsers);
+      console.log('o')
+    </script>
+  </body>
+
+</html>

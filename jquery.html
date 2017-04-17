@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Hello World</title>
+    <style>
+      body {
+        width: 80%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello jQuery!</h1>
+    <h2>Users (click to add)</h2>
+    <ul></ul>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      let $ul = $('ul');
+      function addJSONToPage (json) {
+        json.forEach(user => {
+          let $li = $(`<li><a href="${user.website}">${user.name}</a></li>`);
+          $ul.append($li);
+        })
+      }
+      function getUsers () {
+        $.get('http://jsonplaceholder.typicode.com/users')
+          .then(addJSONToPage)
+      }
+      $('h2').on('click', getUsers);
+    </script>
+  </body>
+
+</html>
+
+
+//click on one of the_name_ should replace that name with the URL for the tag (and should not take the user to the URL,  which would be the default behavior for clicking on a tag).
+
+$('ul').on('click', 'a', function (e) { $(this).text($(this).attr('href')); return false});
+
+.eq(0) gives back that position in the array using jQuery
